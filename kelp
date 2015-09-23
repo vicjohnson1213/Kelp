@@ -1,0 +1,23 @@
+#! /usr/bin/env node
+
+var fs = require('fs'),
+    _ = require('lodash'),
+    parse = require('./parser.js'),
+    interpret = require('./interpreter.js'),
+    str;
+
+try {
+     str = fs.readFileSync(process.argv[2], 'utf8').replace(/\s+/g, ' ').trim();
+} catch (e) {
+    console.log("Error reading file.");
+    process.exit(1);
+}
+
+console.log(JSON.stringify(parse(str)));
+// var output = interpret(parse(str), {});
+
+// _.forEach(output, function(out) {
+//     if (out.result !== undefined && out.result !== null) {
+//         console.log(out.result);
+//     }
+// });

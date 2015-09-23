@@ -1,0 +1,10 @@
+(define
+    (sum a)
+    (if
+        (empty a)
+        0
+        (+
+            (first a)
+            (sum (rest a)))))
+
+(sum (list 1 2 3))

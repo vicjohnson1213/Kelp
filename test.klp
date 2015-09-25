@@ -1,10 +1,6 @@
-(define
-    (sum a)
-    (if
-        (empty a)
+(define (sum x)
+    (if (empty x)
         0
-        (+
-            (first a)
-            (sum (rest a)))))
+        (+ (first x) (sum (rest x)))))
 
-(sum (list 1 2 3))
+(sum (list 1 2 3 4 5))

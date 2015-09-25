@@ -13,11 +13,12 @@ try {
     process.exit(1);
 }
 
-console.log(JSON.stringify(parse(str)));
-// var output = interpret(parse(str), {});
+// parse(str);
+// console.log(JSON.stringify(parse(str)));
+var output = interpret(parse(str));
 
-// _.forEach(output, function(out) {
-//     if (out.result !== undefined && out.result !== null) {
-//         console.log(out.result);
-//     }
-// });
+_.forEach(output, function(out) {
+    if (out.result !== undefined && out.result !== null) {
+        console.log(out.result);
+    }
+});

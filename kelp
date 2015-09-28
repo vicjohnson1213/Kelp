@@ -2,8 +2,8 @@
 
 var fs = require('fs'),
     _ = require('lodash'),
-    parse = require('./parser.js'),
-    interpret = require('./interpreter.js'),
+    parse = require('./lib/parser.js'),
+    interpret = require('./lib/interpreter.js'),
     str;
 
 try {

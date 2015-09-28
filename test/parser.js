@@ -1,5 +1,5 @@
 var expect = require('expect.js'),
-    parse = require('../parser.js');
+    parse = require('../lib/parser.js');
 
 describe('parser:', function() {
     it('should parse function with no arguments.', function() {

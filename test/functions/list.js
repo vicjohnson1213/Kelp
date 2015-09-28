@@ -1,6 +1,6 @@
 var expect = require('expect.js'),
-    interpret = require('../../interpreter.js'),
-    list = require('../../functions/list.js');
+    interpret = require('../../lib/interpreter.js'),
+    list = require('../../lib/functions/list.js');
 
 describe('list functions:', function() {
     describe('constructor', function() {

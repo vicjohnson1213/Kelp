@@ -1,7 +1,7 @@
 var expect = require('expect.js'),
-    parse = require('../../parser.js'),
-    interpret = require('../../interpreter.js'),
-    control = require('../../functions/control.js');
+    parse = require('../../lib/parser.js'),
+    interpret = require('../../lib/interpreter.js'),
+    control = require('../../lib/functions/control.js');
 
 describe('control functions:', function() {
     describe('if', function() {

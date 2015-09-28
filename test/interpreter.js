@@ -1,6 +1,6 @@
 var expect = require('expect.js'),
     _ = require('lodash'),
-    interpret = require('../interpreter.js');
+    interpret = require('../lib/interpreter.js');
 
 describe('interpreter:', function() {
     describe('numbers', function() {

@@ -1,5 +1,5 @@
 var expect = require('expect.js'),
-    math = require('../../functions/math.js');
+    math = require('../../lib/functions/math.js');
 
 describe('math functions:', function() {
     describe('addition', function() {

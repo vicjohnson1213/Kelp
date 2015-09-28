@@ -1,5 +1,5 @@
 var expect = require('expect.js'),
-    test = require('../../functions/test.js');
+    test = require('../../lib/functions/test.js');
 
 describe('environment functions:', function() {
     describe('assert', function() {

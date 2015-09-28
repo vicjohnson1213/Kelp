@@ -1,7 +1,7 @@
 var expect = require('expect.js'),
-    interpret = require('../../interpreter.js'),
-    parse = require('../../parser.js'),
-    environment = require('../../functions/environment.js');
+    interpret = require('../../lib/interpreter.js'),
+    parse = require('../../lib/parser.js'),
+    environment = require('../../lib/functions/environment.js');
 
 describe('environment functions:', function() {
     describe('let', function() {

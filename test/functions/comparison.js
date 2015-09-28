@@ -1,5 +1,5 @@
 var expect = require('expect.js'),
-    comparison = require('../../functions/comparison.js');
+    comparison = require('../../lib/functions/comparison.js');
 
 describe('comparison functions:', function() {
     describe('=', function() {

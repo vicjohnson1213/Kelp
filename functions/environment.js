@@ -10,15 +10,23 @@ var environment = {
         newEnv[name] = value;
         return _.assign({}, env, newEnv);
     },
-    define: function(def, body, env) {
+    define: function(def, body, env, local) {
         if (!def || !body) {
             throw "invalid number of arguments";
         }
 
-        env[def.def.name] = {
+        var func = {
             def: def,
             body: body
         };
+
+        if (local) {
+            var newEnv = {};
+            newEnv[def.name] = func;
+            return _.assign({}, env, newEnv);
+        }
+        
+        env[def.name] = func;
     }
 };
 

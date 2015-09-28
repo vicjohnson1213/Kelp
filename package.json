@@ -1,0 +1,17 @@
+{
+  "name": "Kelp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "kelp",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "expect.js": "^0.3.1",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Victor Johnson",
+  "license": "ISC"
+}

@@ -22,10 +22,8 @@ function parseFunc(chars) {
     }
 
     func.type = 'function';
-    func.def = {
-        name: chars.splice(0, chars.indexOf(' ')).join(''),
-        args: []
-    }
+    func.name = chars.splice(0, chars.indexOf(' ') !== -1 ? chars.indexOf(' ') : chars.indexOf(')')).join('');
+    func.args = [];
 
     arrayTrim(chars);
 
@@ -45,7 +43,7 @@ function parseFunc(chars) {
             token = {};
         } else if (c.match(/\(/)) {
             var res = parseFunc(chars);
-            func.def.args.push(res.func);
+            func.args.push(res.func);
             chars = res.rest;
         } else if (c.match(/\)/)) {
 
@@ -66,7 +64,7 @@ function parseFunc(chars) {
                 token.type = 'boolean';
             }
 
-            func.def.args.push(newToken);
+            func.args.push(newToken);
         }
     }
 }

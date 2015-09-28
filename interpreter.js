@@ -1,17 +1,14 @@
 var _ = require('lodash'),
-    validFuncs = require('./functions/_functions.js');
+    functions = require('./functions/_functions.js');
 
 module.exports = interpret;
 
-function interpret(expressions) {
+function interpret(expressions, env) {
     var results = [],
-        env = {};
+        env = _.assign({}, env);
 
     _.forEach(expressions, function(expr) {
-        results.push({
-            expr: expr,
-            result: interpretExp(expr, env)
-        });
+        results.push(interpretExp(expr, env));
     });
 
     return results;
@@ -24,7 +21,7 @@ function interpretExp(expr, env) {
             break;
         case 'symbol':
             if (!env[expr.value]) {
-                return "unknown variable: " + expr.value;
+                return 'unknown variable: ' + expr.value;
             }
 
             return env[expr.value];
@@ -36,65 +33,74 @@ function interpretExp(expr, env) {
             return expr.value;
             break;
         case 'function':
-            if (env[expr.def.name]) {
-                var funcDef = env[expr.def.name].def;
-
-                if (funcDef.def.args.length !== expr.def.args.length) {
-                    return "Wrong arity.";
-                }
-
-                var newEnv = {};
-
-                for (var arg = 0; arg < funcDef.def.args.length; arg++) {
-                    newEnv = validFuncs['let'](funcDef.def.args[arg].value, interpretExp(expr.def.args[arg], env), newEnv);
-                }
-
-                newEnv = _.merge({}, env, newEnv);
-
-                return interpretExp(env[expr.def.name].body, newEnv);
-            }
-
-            // for any special cases, handle those.  Otherwise, default to just calling
-            // the function with interpreted arguments.
-            switch (expr.def.name) {
-
-                case 'let':
-                    return interpretExp(expr.def.args[2], validFuncs['let'](expr.def.args[0].value, interpretExp(expr.def.args[1], env), env));
-                case 'define':
-                    validFuncs['define'](expr.def.args[0], expr.def.args[1], env);
-                    break;
-
-
-                case 'if':
-                    return interpretExp(expr.def.args[0], env) ? interpretExp(expr.def.args[1], env) : interpretExp(expr.def.args[2], env);
-                case 'begin':
-                    for (var arg = 0; arg < expr.def.args - 1; arg++) {
-                        interpretExp(expr.def.args[arg], env);
-                    }
-
-                    return interpretExp(expr.def.args[expr.def.args.length - 1], env);
-
-
-                case 'list':
-                    return expr.def.args.map(function(arg) {
-                        return interpretExp(arg, env);
-                    });
-
-
-                case 'assert':
-                    return validFuncs[expr.def.name](interpretExp(expr.def.args[0], env), interpretExp(expr.def.args[1], env));
-
-
-                default:
-                    return validFuncs[expr.def.name](expr.def.args.map(function(arg) {
-                        return interpretExp(arg, env);
-                    }), env);
-            }
-
+            return interpretFunc(expr, env);
             break;
+        default:
+            return 'invalid expression: ' + expr;
+            break;
+    }
+}
+
+function interpretFunc(func, env) {
+
+    if (env[func.name]) {
+        var def = env[func.name].def;
+        if (def.args.length !== func.args.length) {
+            return 'Wrong parity when calling function: ' + func.name;
+        }
+
+        var newEnv = env;
+
+        for (var arg = 0; arg < def.args.length; arg++) {
+            newEnv = functions['let'](def.args[arg].value, interpretExp(func.args[arg], env), newEnv);
+        }
+
+        return interpretExp(env[func.name].body, newEnv);
+    }
+
+    switch(func.name) {
+        case 'if':
+            var cond = interpretExp(func.args[0], env);
+
+            if (typeof cond !== 'boolean') {
+                return 'If condition must evaluate a boolean value';
+            }
+
+            return cond ?
+                interpretExp(func.args[1], env) :
+                interpretExp(func.args[2], env);
+
+        case 'begin':
+            for (var arg = 0; arg < func.args.length - 1; arg++) {
+                interpretExp(func.args[arg], env);
+            }
+
+            return interpretExp(func.args[func.args.length - 1], env);
+
+
+
+        case 'let':
+            var newEnv = functions['let'](func.args[0].value, interpretExp(func.args[1], env), env);
+            return interpretExp(func.args[2], newEnv);
+
+        case 'define':
+            functions['define'](func.args[0], func.args[1], env);
+            break;
+
+
+
+        case 'list':
+            return _.map(func.args, function(arg) {
+                return interpretExp(arg, env);
+            });
+        case 'getElement':
+            return functions['getElement'](interpretExp(func.args[0], env), interpretExp(func.args[1], env));
+
+
 
         default:
-            throw "invalid expression: " + expr;
-            break;
+            return functions[func.name](_.map(func.args, function(arg) {
+                return interpretExp(arg, env);
+            }));
     }
 }

@@ -1,6 +1,1 @@
-(define (sum x)
-    (if (empty x)
-        0
-        (+ (first x) (sum (rest x)))))
-
-(sum (list 1 2 3 4 5))
+(let x 10 x)

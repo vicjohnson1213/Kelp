@@ -5,12 +5,24 @@ var list = {
         // Building the array is done directly in the interpreter.
     },
     first: function(arr) {
+        if (!_.isArray(arr[0])) {
+            return 'Invalid argument to (first)';
+        }
+
         return arr[0][0]
     },
     second: function(arr) {
+        if (!_.isArray(arr[0])) {
+            return 'Invalid argument to (second)';
+        }
+        
         return arr[0][1]
     },
     rest: function(arr) {
+        if (!_.isArray(arr[0])) {
+            return 'Invalid argument to (rest)';
+        }
+        
         arr[0].shift();
         return arr[0];
     },
@@ -20,7 +32,7 @@ var list = {
         }
 
         if (idx >= arr.length) {
-            return "Index out of bounds";
+            return 'Index out of bounds: ' + idx;
         }
 
         return arr[idx];
@@ -31,7 +43,7 @@ var list = {
                 return prev.concat(el);
             });
         } else {
-            return 'Invalid argument to (getElement)';
+            return 'Invalid argument to (concat)';
         }
     },
     empty: function(arrs) {

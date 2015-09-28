@@ -1,7 +1,10 @@
 var _ = require('lodash');
 
 var test = {
-    assert: function(actual, expected) {
+    assert: function(args) {
+        var actual = args[0],
+            expected = args[1];
+            
         if (actual !== expected) {
             return 'expected: "' + expected + '", but got "' + actual + '"';
         }

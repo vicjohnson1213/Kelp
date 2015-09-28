@@ -15,10 +15,11 @@ try {
 
 // parse(str);
 // console.log(JSON.stringify(parse(str)));
+
 var output = interpret(parse(str));
 
 _.forEach(output, function(out) {
-    if (out.result !== undefined && out.result !== null) {
-        console.log(out.result);
+    if (out !== undefined && out !== null) {
+        console.log(out);
     }
 });

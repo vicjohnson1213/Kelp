@@ -2,24 +2,59 @@
 
 var fs = require('fs'),
     _ = require('lodash'),
+    program = require('commander'),
     parse = require('./lib/parser.js'),
     interpret = require('./lib/interpreter.js'),
-    str;
+    filename,
+    code, result;
+
+program
+    .version('1.0.0')
+    .arguments('<filename>')
+    .option('-p, --parse-only', 'Parse a Kelp program.')
+    .option('-i, --interpret-only', 'Interpret a previously parsed Kelp program.')
+    .option('-o, --output [filename]', 'Output the results to the specified file.')
+    .action(function(file) {
+        filename = file;
+    })
+    .parse(process.argv);
+
+if (!filename) {
+    program.outputHelp();
+    process.exit(0);
+}
 
 try {
-     str = fs.readFileSync(process.argv[2], 'utf8').replace(/\s+/g, ' ').trim();
+     code = fs.readFileSync(filename, 'utf8');
 } catch (e) {
     console.log("Error reading file.");
     process.exit(1);
 }
 
-// parse(str);
-// console.log(JSON.stringify(parse(str)));
+if (program.parseOnly) {
+    result = JSON.stringify(parse(code), null, '  ');
+} else {
+    var output = program.interpretOnly ? interpret(JSON.parse(code)) : interpret(parse(code));
 
-var output = interpret(parse(str));
+    result = output.filter(function(el) {
+        return el !== undefined && el !== null;
+    }).join('\n');
+}
 
-_.forEach(output, function(out) {
-    if (out !== undefined && out !== null) {
-        console.log(out);
+if (program.output) {
+    var outFileName;
+
+    if (typeof program.output === 'boolean') {
+        console.log('Output filename is required.');
+        process.exit(1);
     }
-});
+
+    fs.writeFile(program.output, result, function(err) {
+        if (err) {
+            console.log('Error saving file');
+            process.exit(1);
+        }
+    });
+} else {
+    console.log(result);
+}

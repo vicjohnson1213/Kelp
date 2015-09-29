@@ -1,1 +1,2 @@
-(let x 10 x)
+(let x (list 1 2 3)
+    (map (lambda [x] (* 2 x))))

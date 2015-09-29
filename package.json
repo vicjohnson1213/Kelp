@@ -8,9 +8,11 @@
     "expect.js": "^0.3.1",
     "lodash": "^3.10.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  },
   "scripts": {
-    "test": "test"
+    "test": "mocha --recursive -R dot"
   },
   "author": "Victor Johnson",
   "license": "MIT"

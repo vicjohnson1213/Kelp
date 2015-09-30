@@ -114,4 +114,31 @@ describe('parser:', function() {
             }]);
         });
     });
+
+    describe('lambdas', function() {
+        it('should parse a lambda', function() {
+            expect(parse('(lambda [x y] (+ x y))')).to.eql([{
+                type: 'function',
+                name: 'lambda',
+                argNames: [{
+                    type: 'symbol',
+                    value: 'x'
+                }, {
+                    type: 'symbol',
+                    value: 'y'
+                }],
+                args: [{
+                    type: 'function',
+                    name: '+',
+                    args: [{
+                        type: 'symbol',
+                        value: 'x'
+                    }, {
+                        type: 'symbol',
+                        value: 'y'
+                    }]
+                }]
+            }]);
+        });
+    });
 });

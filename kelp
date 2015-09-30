@@ -32,7 +32,7 @@ try {
 }
 
 if (program.parseOnly) {
-    result = JSON.stringify(parse(code), null, '  ');
+    result = JSON.stringify(parse(code), null, 2);
 } else {
     var output = program.interpretOnly ? interpret(JSON.parse(code)) : interpret(parse(code));
 

@@ -12,7 +12,8 @@
     "mocha": "^2.3.3"
   },
   "scripts": {
-    "test": "mocha --recursive -R dot"
+    "test": "mocha --recursive -R dot",
+    "testw": "mocha --recursive -R dot -w"
   },
   "author": "Victor Johnson",
   "license": "MIT"

@@ -209,4 +209,48 @@ describe('interpreter:', function() {
             expect(result[0]).to.equal('invalid expression: 5');
         });
     });
+
+    describe('lambda', function() {
+        it('should interpret a lambda', function() {
+            var result = interpret([{
+                'type': 'function',
+                'name': 'lambda',
+                'args': [{
+                    'type': 'function',
+                    'name': '+',
+                    'args': [{
+                        'type': 'symbol',
+                        'value': 'x'
+                    }, {
+                        'type': 'symbol',
+                        'value': 'x'
+                    }]
+                }],
+                'argNames': [{
+                    'type': 'symbol',
+                    'value': 'x'
+                }]
+            }]);
+
+            expect(result).to.eql([{
+                type: 'closure',
+                args: [{
+                    'type': 'symbol',
+                    'value': 'x'
+                }],
+                body: {
+                    'type': 'function',
+                    'name': '+',
+                    'args': [{
+                        'type': 'symbol',
+                        'value': 'x'
+                    }, {
+                        'type': 'symbol',
+                        'value': 'x'
+                    }]
+                },
+                env: {}
+            }]);
+        });
+    });
 });

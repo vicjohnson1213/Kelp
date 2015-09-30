@@ -1,4 +1,5 @@
 var expect = require('expect.js'),
+    parse = require('../../lib/parser.js'),
     interpret = require('../../lib/interpreter.js'),
     list = require('../../lib/functions/list.js');
 
@@ -107,6 +108,28 @@ describe('list functions:', function() {
 
         it('should return true if list doesn\'t exist', function() {
             expect(list.empty([])).to.be.ok();
+        });
+    });
+
+    describe('map', function() {
+        it('should execute function for each element in list', function() {
+            var func = '(map (list 1 2 3) (lambda [x] (* x x)))';
+            expect(interpret(parse(func))).to.eql([[1, 4, 9]]);
+        });
+
+        it('should give the index as the second argument', function() {
+            var func = '(map (list 1 2 3) (lambda [x idx] idx))';
+            expect(interpret(parse(func))).to.eql([[0, 1, 2]]);
+        });
+
+        it('should return error if first arg isn\'t list', function() {
+            var func = '(map 5 (lambda [x idx] idx))';
+            expect(interpret(parse(func))).to.eql(['Invalid arguments to (map (list) (lambda))']);
+        });
+
+        it('should return error if second arg isn\'t lambda', function() {
+            var func = '(map (list 1 2) 5)';
+            expect(interpret(parse(func))).to.eql(['Invalid arguments to (map (list) (lambda))']);
         });
     });
 });

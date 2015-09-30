@@ -41,4 +41,14 @@ describe('math functions:', function() {
             expect(math['/']([1, 2, 'thing'])).to.equal('not a number');
         });
     });
+
+    describe('modulus', function() {
+        it('should sum all numbers', function() {
+            expect(math['%']([5, 3])).to.equal(2);
+        });
+
+        it('should throw an error for NaN', function() {
+            expect(math['%']([1, 'thing'])).to.equal('not a number');
+        });
+    });
 });

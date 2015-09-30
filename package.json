@@ -9,11 +9,13 @@
     "lodash": "^3.10.1"
   },
   "devDependencies": {
+    "istanbul": "^0.3.21",
     "mocha": "^2.3.3"
   },
   "scripts": {
     "test": "mocha --recursive -R dot",
-    "testw": "mocha --recursive -R dot -w"
+    "testw": "mocha --recursive -R dot -w",
+    "cov": "istanbul cover _mocha -- --recursive -R spec"
   },
   "author": "Victor Johnson",
   "license": "MIT"

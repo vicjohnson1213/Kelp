@@ -10,6 +10,10 @@ describe('comparison functions:', function() {
         it('should return false', function() {
             expect(comparison['=']([1, 2])).to.not.be.ok();
         });
+
+        it('should return error on too few args', function() {
+            expect(comparison['=']([1])).to.equal('Invalid number of arguments.');
+        });
     });
 
     describe('<', function() {
@@ -23,6 +27,10 @@ describe('comparison functions:', function() {
 
         it('should return true for less than', function() {
             expect(comparison['<']([1, 2])).to.be.ok();
+        });
+
+        it('should return error on too few args', function() {
+            expect(comparison['<']([1])).to.equal('Invalid number of arguments.');
         });
     });
 
@@ -38,6 +46,10 @@ describe('comparison functions:', function() {
         it('should return true for less than', function() {
             expect(comparison['<=']([1, 2])).to.be.ok();
         });
+
+        it('should return error on too few args', function() {
+            expect(comparison['<=']([1])).to.equal('Invalid number of arguments.');
+        });
     });
 
     describe('>', function() {
@@ -52,6 +64,10 @@ describe('comparison functions:', function() {
         it('should return false for less than', function() {
             expect(comparison['>']([1, 2])).to.not.be.ok();
         });
+
+        it('should return error on too few args', function() {
+            expect(comparison['>']([1])).to.equal('Invalid number of arguments.');
+        });
     });
 
     describe('>=', function() {
@@ -65,6 +81,10 @@ describe('comparison functions:', function() {
 
         it('should return false for less than', function() {
             expect(comparison['>=']([1, 2])).to.not.be.ok();
+        });
+
+        it('should return error on too few args', function() {
+            expect(comparison['>=']([1])).to.equal('Invalid number of arguments.');
         });
     });
 });

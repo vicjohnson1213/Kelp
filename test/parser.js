@@ -11,7 +11,7 @@ describe('parser:', function() {
     });
 
     it('should parse function with value arguments.', function() {
-        expect(parse('(+ 1 2)')).to.eql([{
+        expect(parse('(+ 1 22)')).to.eql([{
             type: 'function',
             name: '+',
             args: [{
@@ -19,7 +19,7 @@ describe('parser:', function() {
                 value: '1'
             }, {
                 type: 'number',
-                value: '2'
+                value: '22'
             }]
         }]);
     });

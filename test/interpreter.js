@@ -234,10 +234,11 @@ describe('interpreter:', function() {
 
             expect(result).to.eql([{
                 type: 'closure',
-                args: [{
+                argNames: [{
                     'type': 'symbol',
                     'value': 'x'
                 }],
+                argVals: [],
                 body: {
                     'type': 'function',
                     'name': '+',

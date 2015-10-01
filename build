@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+if ! type node > /dev/null; then
+    unameStr=$(uname)
+    if [[ "$unameStr" == 'Darwin' ]]; then
+
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.27.1/install.sh | bash
+        nvm install stable
+        nvm alias default stable
+
+        echo "Installing dependencies and running the unit tests"
+        npm install
+        npm test
+
+    elif [[ "$unameStr" == 'windowsnt' ]]; then
+        echo "Please install node.js and re-run the build command"
+    fi
+else
+    echo "Installing dependencies and running the unit tests"
+    npm install
+    npm test
+fi

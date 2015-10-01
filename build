@@ -3,11 +3,17 @@
 if ! type node > /dev/null; then
     unameStr=$(uname)
     if [[ "$unameStr" == 'Darwin' ]]; then
-        if ! type brew > /dev/null; then
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        # if ! type brew > /dev/null; then
+        #     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        # fi
+
+        if ! type nvm > /dev/null; then
+            # brew install nvm
+            echo "Note: this will add a couple lines to ~/.bashrc, so you may want to move those in the future."
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.27.1/install.sh | bash
+            source ~/.bashrc
         fi
-        
-        brew install nvm
+
         nvm install stable
         nvm alias default stable
 

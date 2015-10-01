@@ -9,9 +9,10 @@ var fs = require('fs'),
     filename,
     code, result;
 
+// 'Runs a program written in the Kelp language. If <filename> is ommitted, an interactive shell will open where functions can be executed.'
 program
     .version('1.0.0')
-    .arguments('<filename>')
+    .arguments('[filename]')
     .option('-p, --parse-only', 'Parse a Kelp program.')
     .option('-i, --interpret-only', 'Interpret a previously parsed Kelp program.')
     .option('-o, --output [filename]', 'Output the results to the specified file.')
@@ -22,6 +23,8 @@ program
 
 // If there is no filename, open an interactive propmt to execute different commands.
 if (!filename) {
+    var env = {};
+    
     prompt.formatPrompt = function(parts) {
         return parts.message + parts.delim;
     }
@@ -39,7 +42,7 @@ if (!filename) {
                 process.exit(0);
             }
 
-            console.log(interpret(parse(res.cmd))[0]);
+            console.log(interpret(parse(res.cmd), env)[0]);
             ask();
         });
     }

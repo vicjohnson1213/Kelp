@@ -91,6 +91,28 @@ describe('parser:', function() {
         }]);
     });
 
+    it('should parse symbol starting with "e"', function() {
+        expect(parse('(+ el)')).to.eql([{
+            type: 'function',
+            name: '+',
+            args: [{
+                type: 'symbol',
+                value: 'el'
+            }]
+        }]);
+    });
+
+    it('should handle whitespace', function() {
+        expect(parse('    (+   el)   ')).to.eql([{
+            type: 'function',
+            name: '+',
+            args: [{
+                type: 'symbol',
+                value: 'el'
+            }]
+        }]);
+    });
+
     describe('booleans and symbols', function() {
         it ('should parse a symbol', function() {
             expect(parse('(test thing)')).to.eql([{

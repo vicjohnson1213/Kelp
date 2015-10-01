@@ -132,4 +132,28 @@ describe('list functions:', function() {
             expect(interpret(parse(func))).to.eql(['Invalid arguments to (map (list) (lambda))']);
         });
     });
+
+    describe('reduce', function() {
+        it('should execute function for each element in list', function() {
+            var func = '(reduce (list 1 2 3) (lambda [prev x] (+ prev x)))';
+            expect(interpret(parse(func))).to.eql([6]);
+        });
+
+        it('should return error if first arg isn\'t list', function() {
+            var func = '(reduce 5 (lambda [prev el] idx))';
+            expect(interpret(parse(func))).to.eql(['Invalid arguments to (reduce (list) (lambda))']);
+        });
+
+        it('should return error if second arg isn\'t lambda', function() {
+            var func = '(reduce (list 1 2) 5)';
+            expect(interpret(parse(func))).to.eql(['Invalid arguments to (reduce (list) (lambda))']);
+        });
+    });
+
+    describe('reduceRight', function() {
+        it('should execute function for each element in list', function() {
+            var func = '(reduceRight (list 1 2 3 4) (lambda [prev x] (- prev x)))';
+            expect(interpret(parse(func))).to.eql([-2]);
+        });
+    });
 });

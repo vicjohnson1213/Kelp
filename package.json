@@ -4,6 +4,7 @@
   "description": "A minimal functional programming language.",
   "main": "kelp",
   "dependencies": {
+    "chalk": "^1.1.1",
     "commander": "^2.8.1",
     "expect.js": "^0.3.1",
     "lodash": "^3.10.1",

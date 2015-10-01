@@ -3,13 +3,9 @@
 if ! type node > /dev/null; then
     unameStr=$(uname)
     if [[ "$unameStr" == 'Darwin' ]]; then
-        # if ! type brew > /dev/null; then
-        #     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        # fi
-
         if ! type nvm > /dev/null; then
             # brew install nvm
-            echo "Note: this will add a couple lines to ~/.bashrc, so you may want to move those in the future."
+            echo $'\e[0;31m\nNote: this will add a couple lines to ~/.bashrc, so you may want to move those in the future.\n\e[0m'
             curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.27.1/install.sh | bash
             source ~/.bashrc
         fi
@@ -22,7 +18,7 @@ if ! type node > /dev/null; then
         npm test
 
     elif [[ "$unameStr" == 'windowsnt' ]]; then
-        echo "Please install node.js and re-run the build command"
+        echo $"\e[0;31mPlease install node.js and re-run the build command\e[0m"
     fi
 else
     echo "Installing dependencies and running the unit tests"

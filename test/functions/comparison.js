@@ -14,6 +14,10 @@ describe('comparison functions:', function() {
         it('should return error on too few args', function() {
             expect(comparison['=']([1])).to.equal('Invalid number of arguments.');
         });
+
+        it('should compare other data types', function() {
+            expect(comparison['='](['str', 'str'])).to.be.ok();
+        });
     });
 
     describe('<', function() {

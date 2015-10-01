@@ -1,5 +1,7 @@
 var expect = require('expect.js'),
     _ = require('lodash'),
+    chalk = require('chalk'),
+    parse = require('../lib/parser.js'),
     interpret = require('../lib/interpreter.js');
 
 describe('interpreter:', function() {
@@ -202,11 +204,17 @@ describe('interpreter:', function() {
         });
     });
 
-    describe('invalid expression', function() {
+    describe('invalid expression/function', function() {
         it('should break on an invalid expression', function() {
             var result = interpret([5]);
 
             expect(result[0]).to.equal('invalid expression: 5');
+        });
+
+        it('should break on an invalid function', function() {
+            var result = interpret(parse('(func 1)'));
+
+            expect(chalk.stripColor(result[0])).to.equal('func is not a function');
         });
     });
 

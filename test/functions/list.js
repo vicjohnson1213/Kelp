@@ -156,4 +156,20 @@ describe('list functions:', function() {
             expect(interpret(parse(func))).to.eql([-2]);
         });
     });
+
+    describe('join', function() {
+        it('should join an array', function() {
+            expect(list.join([['a', 'b']])).to.equal('ab');
+            expect(list.join([[1, 2, 3]])).to.equal('123');
+        });
+
+        it('should join by a string', function() {
+            expect(list.join([['a', 'b'], ','])).to.equal('a,b');
+        });
+
+        it('should error on bad args', function() {
+            expect(list.join(['str'])).to.equal('Invalid argument to (join list string)');
+            expect(list.join([['a', 'b'], 5])).to.equal('Invalid argument to (join list string)');
+        });
+    });
 });

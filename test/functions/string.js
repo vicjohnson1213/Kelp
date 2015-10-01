@@ -66,4 +66,19 @@ describe('string functions:', function() {
             expect(string.indexOf(['asdf', 5])).to.equal('Invalid arguments to (indexOf string string)');
         });
     });
+
+    describe('split', function() {
+        it('should split a string', function() {
+            expect(string.split(['some'])).to.eql(['s', 'o', 'm', 'e']);
+        });
+
+        it('should split a string by another string', function() {
+            expect(string.split(['some', 'o'])).to.eql(['s', 'me']);
+        });
+
+        it('should return error for bad args', function() {
+            expect(string.split([5, 'asdf'])).to.equal('Invalid arguments to (split string string)');
+            expect(string.split(['asdf', 5])).to.equal('Invalid arguments to (split string string)');
+        });
+    });
 });

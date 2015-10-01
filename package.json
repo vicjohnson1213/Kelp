@@ -13,8 +13,8 @@
     "mocha": "^2.3.3"
   },
   "scripts": {
-    "test": "mocha --recursive -R dot",
-    "testw": "mocha --recursive -R dot -w",
+    "test": "mocha --recursive -R nyan",
+    "testw": "mocha --recursive -R nyan -w",
     "cov": "istanbul cover _mocha -- --recursive -R nyan",
     "covo": "istanbul cover _mocha -- --recursive -R nyan && open coverage/lcov-report/index.html"
   },

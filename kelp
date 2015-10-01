@@ -2,6 +2,7 @@
 
 var fs = require('fs'),
     _ = require('lodash'),
+    prompt = require('prompt'),
     program = require('commander'),
     parse = require('./lib/parser.js'),
     interpret = require('./lib/interpreter.js'),
@@ -19,42 +20,62 @@ program
     })
     .parse(process.argv);
 
+// If there is no filename, open an interactive propmt to execute different commands.
 if (!filename) {
-    program.outputHelp();
-    process.exit(0);
-}
+    prompt.formatPrompt = function(parts) {
+        return parts.message + parts.delim;
+    }
 
-try {
-     code = fs.readFileSync(filename, 'utf8');
-} catch (e) {
-    console.log("Error reading file.");
-    process.exit(1);
-}
+    prompt.start({
+        message: '>>',
+        delimiter: ''
+    });
+    ask();
 
-if (program.parseOnly) {
-    result = JSON.stringify(parse(code), null, 2);
+    function ask() {
+        prompt.get(['cmd'], function(err, res) {
+            if (err) {
+                console.log();
+                process.exit(0);
+            }
+
+            console.log(interpret(parse(res.cmd))[0]);
+            ask();
+        });
+    }
 } else {
-    var output = program.interpretOnly ? interpret(JSON.parse(code)) : interpret(parse(code));
-
-    result = output.filter(function(el) {
-        return el !== undefined && el !== null;
-    }).join('\n');
-}
-
-if (program.output) {
-    var outFileName;
-
-    if (typeof program.output === 'boolean') {
-        console.log('Output filename is required.');
+    try {
+         code = fs.readFileSync(filename, 'utf8');
+    } catch (e) {
+        console.log("Error reading file.");
         process.exit(1);
     }
 
-    fs.writeFile(program.output, result, function(err) {
-        if (err) {
-            console.log('Error saving file');
+    if (program.parseOnly) {
+        result = JSON.stringify(parse(code), null, 2);
+    } else {
+        var output = program.interpretOnly ? interpret(JSON.parse(code)) : interpret(parse(code));
+
+        result = output.filter(function(el) {
+            return el !== undefined && el !== null;
+        }).join('\n');
+    }
+
+    if (program.output) {
+        var outFileName;
+
+        if (typeof program.output === 'boolean') {
+            console.log('Output filename is required.');
             process.exit(1);
         }
-    });
-} else {
-    console.log(result);
+
+        fs.writeFile(program.output, result, function(err) {
+            if (err) {
+                console.log('Error saving file');
+                process.exit(1);
+            }
+        });
+    } else {
+        console.log(result);
+    }
 }

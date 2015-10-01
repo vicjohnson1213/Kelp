@@ -163,4 +163,28 @@ describe('parser:', function() {
             }]);
         });
     });
+
+    describe('strings', function() {
+        it('should parse a string', function() {
+            expect(parse('(func "thing")')).to.eql([{
+                type: 'function',
+                name: 'func',
+                args: [{
+                    type: 'string',
+                    value: 'thing'
+                }]
+            }]);
+        });
+
+        it('should parse escaped quotes', function() {
+            expect(parse('(func "thing\\"")')).to.eql([{
+                type: 'function',
+                name: 'func',
+                args: [{
+                    type: 'string',
+                    value: 'thing\\"'
+                }]
+            }]);
+        });
+    });
 });

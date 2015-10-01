@@ -1,7 +1,7 @@
 {
   "name": "Kelp",
   "version": "1.0.0",
-  "description": "",
+  "description": "A minimal functional programming language.",
   "main": "kelp",
   "dependencies": {
     "commander": "^2.8.1",
@@ -15,8 +15,13 @@
   "scripts": {
     "test": "mocha --recursive -R dot",
     "testw": "mocha --recursive -R dot -w",
-    "cov": "istanbul cover _mocha -- --recursive -R spec"
+    "cov": "istanbul cover _mocha -- --recursive -R nyan",
+    "covo": "istanbul cover _mocha -- --recursive -R nyan && open coverage/lcov-report/index.html"
   },
   "author": "Victor Johnson",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vicjohnson1213/Kelp.git"
+  }
 }

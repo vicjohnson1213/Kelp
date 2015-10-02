@@ -8,7 +8,7 @@ describe('math functions:', function() {
         });
 
         it('should throw an error for NaN', function() {
-            expect(math['+']([1, 2, 'thing'])).to.equal('not a number');
+            expect(math['+']([1, 2, 'thing']).message).to.equal('Not a number in (+ number ...)');
         });
     });
 
@@ -18,7 +18,7 @@ describe('math functions:', function() {
         });
 
         it('should throw an error for NaN', function() {
-            expect(math['-']([1, 2, 'thing'])).to.equal('not a number');
+            expect(math['-']([1, 2, 'thing']).message).to.equal('Not a number in (- number ...)');
         });
     });
 
@@ -28,7 +28,7 @@ describe('math functions:', function() {
         });
 
         it('should throw an error for NaN', function() {
-            expect(math['*']([1, 2, 'thing'])).to.equal('not a number');
+            expect(math['*']([1, 2, 'thing']).message).to.equal('Not a number in (* number ...)');
         });
     });
 
@@ -38,7 +38,7 @@ describe('math functions:', function() {
         });
 
         it('should throw an error for NaN', function() {
-            expect(math['/']([1, 2, 'thing'])).to.equal('not a number');
+            expect(math['/']([1, 2, 'thing']).message).to.equal('Not a number in (/ number ...)');
         });
     });
 
@@ -48,7 +48,7 @@ describe('math functions:', function() {
         });
 
         it('should throw an error for NaN', function() {
-            expect(math['%']([1, 'thing'])).to.equal('not a number');
+            expect(math['%']([1, 'thing']).message).to.equal('Not a number in (% number ...)');
         });
     });
 });

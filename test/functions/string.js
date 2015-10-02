@@ -12,8 +12,8 @@ describe('string functions:', function() {
         });
 
         it('should return error for bad args', function() {
-            expect(string.substring(['some string', 'f', undefined])).to.equal('Invalid arguments to (substring string number number)');
-            expect(string.substring([3, 2, undefined])).to.equal('Invalid arguments to (substring string number number)');
+            expect(string.substring(['some string', 'f', undefined]).message).to.equal('Invalid arguments to (substring string number number)');
+            expect(string.substring([3, 2, undefined]).message).to.equal('Invalid arguments to (substring string number number)');
         });
     });
 
@@ -27,8 +27,8 @@ describe('string functions:', function() {
         });
 
         it('should return error for bad args', function() {
-            expect(string.substr(['some string', 'f', undefined])).to.equal('Invalid arguments to (substr string number number)');
-            expect(string.substr([3, 2, undefined])).to.equal('Invalid arguments to (substr string number number)');
+            expect(string.substr(['some string', 'f', undefined]).message).to.equal('Invalid arguments to (substr string number number)');
+            expect(string.substr([3, 2, undefined]).message).to.equal('Invalid arguments to (substr string number number)');
         });
     });
 
@@ -42,7 +42,7 @@ describe('string functions:', function() {
         });
 
         it('should return error for bad args', function() {
-            expect(string.append(['some string', 5])).to.equal('Invalid arguments to (append string ...)');
+            expect(string.append(['some string', 5]).message).to.equal('Invalid arguments to (append string ...)');
         });
     });
 
@@ -52,7 +52,7 @@ describe('string functions:', function() {
         });
 
         it('should return error for bad args', function() {
-            expect(string.trim([5])).to.equal('Invalid arguments to (trim string)');
+            expect(string.trim([5]).message).to.equal('Invalid arguments to (trim string)');
         });
     });
 
@@ -62,8 +62,8 @@ describe('string functions:', function() {
         });
 
         it('should return error for bad args', function() {
-            expect(string.indexOf([5, 'asdf'])).to.equal('Invalid arguments to (indexOf string string)');
-            expect(string.indexOf(['asdf', 5])).to.equal('Invalid arguments to (indexOf string string)');
+            expect(string.indexOf([5, 'asdf']).message).to.equal('Invalid arguments to (indexOf string string)');
+            expect(string.indexOf(['asdf', 5]).message).to.equal('Invalid arguments to (indexOf string string)');
         });
     });
 
@@ -77,8 +77,8 @@ describe('string functions:', function() {
         });
 
         it('should return error for bad args', function() {
-            expect(string.split([5, 'asdf'])).to.equal('Invalid arguments to (split string string)');
-            expect(string.split(['asdf', 5])).to.equal('Invalid arguments to (split string string)');
+            expect(string.split([5, 'asdf']).message).to.equal('Invalid arguments to (split string string)');
+            expect(string.split(['asdf', 5]).message).to.equal('Invalid arguments to (split string string)');
         });
     });
 });

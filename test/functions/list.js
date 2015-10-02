@@ -29,7 +29,7 @@ describe('list functions:', function() {
         });
 
         it('should return error if arg is not an array', function() {
-            expect(list.first([1])).to.equal('Invalid argument to (first)');
+            expect(list.first([1]).message).to.equal('Invalid argument to (first list)');
         });
     });
 
@@ -39,7 +39,7 @@ describe('list functions:', function() {
         });
 
         it('should return error if arg is not an array', function() {
-            expect(list.second([1])).to.equal('Invalid argument to (second)');
+            expect(list.second([1]).message).to.equal('Invalid argument to (second list)');
         });
     });
 
@@ -49,7 +49,7 @@ describe('list functions:', function() {
         });
 
         it('should return error if arg is not an array', function() {
-            expect(list.rest([1])).to.equal('Invalid argument to (rest)');
+            expect(list.rest([1]).message).to.equal('Invalid argument to (rest list)');
         });
     });
 
@@ -79,11 +79,11 @@ describe('list functions:', function() {
         });
 
         it('should not accept anything other than an array', function() {
-            expect(list.getElement(5, 5)).to.eql('Invalid argument to (getElement)');
+            expect(list.getElement(5, 5).message).to.eql('Invalid argument to (getElement number list)');
         });
 
         it('should not an out of bounds index', function() {
-            expect(list.getElement(5, [1, 2, 3])).to.eql('Index out of bounds: 5');
+            expect(list.getElement(5, [1, 2, 3]).message).to.eql('Index out of bounds: 5');
         });
     });
 
@@ -93,7 +93,7 @@ describe('list functions:', function() {
         });
 
         it('should return error if any arg is not an array', function() {
-            expect(list.concat([[1, 2, 3], 5])).to.eql('Invalid argument to (concat)');
+            expect(list.concat([[1, 2, 3], 5]).message).to.eql('Invalid argument to (concat list ...)');
         })
     });
 
@@ -124,12 +124,12 @@ describe('list functions:', function() {
 
         it('should return error if first arg isn\'t list', function() {
             var func = '(map 5 (lambda [x idx] idx))';
-            expect(interpret(parse(func))).to.eql(['Invalid arguments to (map (list) (lambda))']);
+            expect(interpret(parse(func))[0].message).to.eql('Invalid arguments to (map (list) (lambda))');
         });
 
         it('should return error if second arg isn\'t lambda', function() {
             var func = '(map (list 1 2) 5)';
-            expect(interpret(parse(func))).to.eql(['Invalid arguments to (map (list) (lambda))']);
+            expect(interpret(parse(func))[0].message).to.eql('Invalid arguments to (map (list) (lambda))');
         });
     });
 
@@ -141,12 +141,12 @@ describe('list functions:', function() {
 
         it('should return error if first arg isn\'t list', function() {
             var func = '(reduce 5 (lambda [prev el] idx))';
-            expect(interpret(parse(func))).to.eql(['Invalid arguments to (reduce (list) (lambda))']);
+            expect(interpret(parse(func))[0].message).to.eql('Invalid arguments to (reduce (list) (lambda))');
         });
 
         it('should return error if second arg isn\'t lambda', function() {
             var func = '(reduce (list 1 2) 5)';
-            expect(interpret(parse(func))).to.eql(['Invalid arguments to (reduce (list) (lambda))']);
+            expect(interpret(parse(func))[0].message).to.eql('Invalid arguments to (reduce (list) (lambda))');
         });
     });
 
@@ -168,8 +168,8 @@ describe('list functions:', function() {
         });
 
         it('should error on bad args', function() {
-            expect(list.join(['str'])).to.equal('Invalid argument to (join list string)');
-            expect(list.join([['a', 'b'], 5])).to.equal('Invalid argument to (join list string)');
+            expect(list.join(['str']).message).to.equal('Invalid argument to (join list string)');
+            expect(list.join([['a', 'b'], 5]).message).to.equal('Invalid argument to (join list string)');
         });
     });
 });

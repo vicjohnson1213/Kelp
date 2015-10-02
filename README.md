@@ -6,8 +6,7 @@
 
 Run the following commands:
 ``` bash
-git clone https://github.com/vicjohnson1213/Kelp.git'
-source build
+npm i -g clone git+https://github.com/vicjohnson1213/Kelp.git'
 ```
 
 ## Basic Syntax

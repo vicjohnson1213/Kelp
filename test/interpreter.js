@@ -72,7 +72,7 @@ describe('interpreter:', function() {
                 value: 'x'
             }]);
 
-            expect(result[0]).to.equal('unknown variable: x');
+            expect(result[0].message).to.equal('Unknown variable: x');
         });
     });
 
@@ -200,7 +200,7 @@ describe('interpreter:', function() {
                 }
             });
 
-            expect(result[0]).to.equal('Wrong parity when calling function: sum');
+            expect(result[0].message).to.equal('Wrong parity when calling function: sum');
         });
     });
 
@@ -208,13 +208,13 @@ describe('interpreter:', function() {
         it('should break on an invalid expression', function() {
             var result = interpret([5]);
 
-            expect(result[0]).to.equal('invalid expression: 5');
+            expect(result[0].message).to.equal('Invalid expression: 5');
         });
 
         it('should break on an invalid function', function() {
             var result = interpret(parse('(func 1)'));
 
-            expect(chalk.stripColor(result[0])).to.equal('func is not a function');
+            expect(result[0].message).to.equal('func is not a function');
         });
     });
 

@@ -14,7 +14,7 @@ describe('control functions:', function() {
         });
 
         it('should return error if condition is not boolean', function() {
-            expect(interpret(parse('(if 1 1 2)'))[0]).to.be.equal('If condition must evaluate a boolean value');
+            expect(interpret(parse('(if 1 1 2)'))[0].message).to.be.equal('Invalid argument to (if boolean expression expression): 1');
         });
     });
 

@@ -3,6 +3,7 @@
 var fs = require('fs'),
     _ = require('lodash'),
     prompt = require('prompt'),
+    chalk = require('chalk'),
     program = require('commander'),
     parse = require('./lib/parser.js'),
     interpret = require('./lib/interpreter.js'),
@@ -24,28 +25,14 @@ program
 // If there is no filename, open an interactive propmt to execute different commands.
 if (!filename) {
     var env = {};
-    
-    prompt.formatPrompt = function(parts) {
-        return parts.message + parts.delim;
-    }
-
-    prompt.start({
-        message: '>>',
-        delimiter: ''
+    prompt.repeat({
+        prompt: '>> ',
+        onLine: function(res) {
+            console.log(formatOutput(interpret(parse(res))[0]));
+        }
     });
-    ask();
 
-    function ask() {
-        prompt.get(['cmd'], function(err, res) {
-            if (err) {
-                console.log();
-                process.exit(0);
-            }
-
-            console.log(interpret(parse(res.cmd), env)[0]);
-            ask();
-        });
-    }
+    prompt.start();
 } else {
     try {
          code = fs.readFileSync(filename, 'utf8');
@@ -61,6 +48,8 @@ if (!filename) {
 
         result = output.filter(function(el) {
             return el !== undefined && el !== null;
+        }).map(function(el) {
+            return formatOutput(el);
         }).join('\n');
     }
 
@@ -81,4 +70,8 @@ if (!filename) {
     } else {
         console.log(result);
     }
+}
+
+function formatOutput(output) {
+    return output.type === 'error' ? chalk.red(output.message) : output;
 }

@@ -12,7 +12,7 @@ describe('comparison functions:', function() {
         });
 
         it('should return error on too few args', function() {
-            expect(comparison['=']([1])).to.equal('Invalid number of arguments.');
+            expect(comparison['=']([1]).message).to.equal('Invalid number of arguments to (=)');
         });
 
         it('should compare other data types', function() {
@@ -34,7 +34,7 @@ describe('comparison functions:', function() {
         });
 
         it('should return error on too few args', function() {
-            expect(comparison['<']([1])).to.equal('Invalid number of arguments.');
+            expect(comparison['<']([1]).message).to.equal('Invalid number of arguments to (<)');
         });
     });
 
@@ -52,7 +52,7 @@ describe('comparison functions:', function() {
         });
 
         it('should return error on too few args', function() {
-            expect(comparison['<=']([1])).to.equal('Invalid number of arguments.');
+            expect(comparison['<=']([1]).message).to.equal('Invalid number of arguments to (<=)');
         });
     });
 
@@ -70,7 +70,7 @@ describe('comparison functions:', function() {
         });
 
         it('should return error on too few args', function() {
-            expect(comparison['>']([1])).to.equal('Invalid number of arguments.');
+            expect(comparison['>']([1]).message).to.equal('Invalid number of arguments to (>)');
         });
     });
 
@@ -88,7 +88,7 @@ describe('comparison functions:', function() {
         });
 
         it('should return error on too few args', function() {
-            expect(comparison['>=']([1])).to.equal('Invalid number of arguments.');
+            expect(comparison['>=']([1]).message).to.equal('Invalid number of arguments to (>=)');
         });
     });
 });

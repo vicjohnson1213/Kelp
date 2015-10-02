@@ -35,9 +35,9 @@ describe('environment functions:', function() {
         });
 
         it('should return error if name or value is undefined', function() {
-            expect(environment.let('x')).to.equal('Invalid number of argunments in (let name value env)');
-            expect(environment.let(null, 4, {})).to.equal('Invalid number of argunments in (let name value env)');
-            expect(environment.let('x', 4)).to.equal('Invalid number of argunments in (let name value env)');
+            expect(environment.let('x').message).to.equal('Invalid number of argunments in (let name value env)');
+            expect(environment.let(null, 4, {}).message).to.equal('Invalid number of argunments in (let name value env)');
+            expect(environment.let('x', 4).message).to.equal('Invalid number of argunments in (let name value env)');
         });
 
     });
@@ -105,9 +105,9 @@ describe('environment functions:', function() {
         });
 
         it('should return error if def, body, or env is undefined', function() {
-            expect(environment.define('x')).to.equal('Invalid number of argunments in (define def body env local)');
-            expect(environment.define(null, 4, {})).to.equal('Invalid number of argunments in (define def body env local)');
-            expect(environment.define('x', 4)).to.equal('Invalid number of argunments in (define def body env local)');
+            expect(environment.define('x').message).to.equal('Invalid number of argunments in (define def body env local)');
+            expect(environment.define(null, 4, {}).message).to.equal('Invalid number of argunments in (define def body env local)');
+            expect(environment.define('x', 4).message).to.equal('Invalid number of argunments in (define def body env local)');
         });
     });
 });

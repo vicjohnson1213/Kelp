@@ -1,8 +1,10 @@
 {
   "name": "Kelp",
   "version": "1.0.0",
+  "author": "Victor Johnson",
   "description": "A minimal functional programming language.",
   "main": "kelp",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
     "commander": "^2.8.1",
@@ -20,10 +22,11 @@
     "cov": "istanbul cover _mocha -- --recursive -R nyan",
     "covo": "istanbul cover _mocha -- --recursive -R nyan && open coverage/lcov-report/index.html"
   },
-  "author": "Victor Johnson",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/vicjohnson1213/Kelp.git"
+  },
+  "bin": {
+    "kelp": "./kelp"
   }
 }

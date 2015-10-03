@@ -70,8 +70,21 @@ if (!filename) {
     } else {
         console.log(result);
     }
+
+    process.exit(0);
 }
 
 function formatOutput(output) {
-    return output.type === 'error' ? chalk.red(output.message) : output;
+    if (output.type === 'error') {
+        var callStack = output.callStack;
+        output = chalk.red(output.message) + '\n';
+        output += 'Stack Trace:\n';
+
+        // need to format the stack trace.
+        _.forEach(callStack, function(el, idx) {
+            output += '>' +  _.repeat(' ', idx + 1) + el + '\n';
+        });
+    }
+
+    return output;
 }

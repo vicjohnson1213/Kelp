@@ -1,6 +1,5 @@
 var expect = require('expect.js'),
     _ = require('lodash'),
-    chalk = require('chalk'),
     parse = require('../lib/parser.js'),
     interpret = require('../lib/interpreter.js');
 

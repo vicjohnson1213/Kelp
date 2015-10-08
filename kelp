@@ -2,7 +2,7 @@
 
 var fs = require('fs'),
     _ = require('lodash'),
-    prompt = require('prompt'),
+    prompt = require('minimal-prompt'),
     chalk = require('chalk'),
     program = require('commander'),
     parse = require('./lib/parser.js'),
@@ -27,6 +27,10 @@ if (!filename) {
     var env = {};
     prompt.repeat({
         prompt: '>> ',
+        delimiter: '',
+        formatPrompt: function(p, d) {
+            return p;
+        },
         onLine: function(res) {
             console.log(formatOutput(interpret(parse(res))[0]));
         }

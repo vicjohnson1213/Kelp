@@ -1,5 +1,7 @@
 # Kelp
 
+[![Build Status](https://travis-ci.org/vicjohnson1213/Kelp.svg?branch=master)](https://travis-ci.org/vicjohnson1213/Kelp) [![Dependency Status](https://david-dm.org/vicjohnson1213/Kelp.svg)](https://david-dm.org/vicjohnson1213/Kelp)
+
 > A minimal functional programming language running on node.js
 
 ## Installation

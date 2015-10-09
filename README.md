@@ -28,11 +28,104 @@ wget -qO- https://raw.githubusercontent.com/vicjohnson1213/Kelp/master/install.s
 
 Once Kelp is installed, it can be used by the `kelp` command.  Please run `kelp -h` for usage information.
 
-## Basic Syntax
+## Syntax
 
-All functions are enclosed in parenthesis, with the first word being the function name and all following expressions act as the arguments.
+All functions are enclosed in parenthesis, with the first Expression being the function to call and all following expressions are the arguments.
 
 *Example:*
 ```
-(functionName arg1 arg2 (function2 function2Arg1))
+(+ 1 2) // Returns 3
+```
+
+*Note:* All values can be replaces with function calls that evaluate to the expected type.
+
+*Example:*
+```
+(+ 1 2 (* 2 3)) // Returns 9
+```
+
+The only exception to to that pattern is declaring a lambda function.  Lmbda functions use `[]` to enclose the parameters.
+
+*Example:*
+```
+(lambda [x y] (+ x y)) // Returns a function that will add x and y together
+```
+
+# API
+
+- Builtin Functions
+    - [Comparison functions](#comparison-functions)
+    - [Control Flow Functions](#control-flow-functions)
+    - [Environment Functions](#environment-functions)
+    - [List Functions](#list-functions)
+    - [Math Functions](#math-functions)
+    - [String Functions](#string-functions)
+    - [Test Functions](#test-functions)
+
+
+## Comparison Functions
+
+#### Equality: `(= param param)`
+
+**Returns:** `true` if the two values are equal and `false` otherwise.
+
+*Example:*
+```
+(= 1 1) // Returns true
+(= 1 2) // Returns false
+```
+
+#### Less Than: `(< param param)`
+
+**Returns:** `true` if the left value is less than the right and `false` otherwise.
+
+*Example:*
+```
+(< 0 1) // Returns true
+(< 1 1) // Returns false
+(< 1 0) // Returns false
+```
+
+#### Less Than or Equal To: `(<= param param)`
+
+**Returns:** `true` if the left value is less than or equal to the right and `false` otherwise.
+
+*Example:*
+```
+(< 0 1) // Returns true
+(< 1 1) // Returns true
+(< 1 0) // Returns false
+```
+
+#### Greater Than: `(> param param)`
+
+**Returns:** `true` if the left value is greater than the right and `false` otherwise.
+
+*Example:*
+```
+(> 0 1) // Returns false
+(> 1 1) // Returns true
+```
+
+#### Greater Than or Equal To: `(>= param param)`
+
+**Returns:** `true` if the left value is less than or equal to the right and `false` otherwise.
+
+*Example:*
+```
+(> 0 1) // Returns false
+(> 1 1) // Returns true
+(> 1 0) // Returns true
+```
+
+## Control Flow Functions
+
+#### If : `(if condition expression expression)`
+
+**Returns:** The result of the first expression if condition evaluates to `true` and the result of the second expression if condition evaluates to `false`.
+
+*Example:*
+```
+(if true 1 2) // Returns 1
+(if false 1 2) // Returns 2
 ```

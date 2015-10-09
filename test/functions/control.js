@@ -17,10 +17,4 @@ describe('control functions:', function() {
             expect(interpret(parse('(if 1 1 2)'))[0].message).to.be.equal('Invalid argument to (if boolean expression expression): 1');
         });
     });
-
-    describe('begin', function() {
-        it('should evaluate all arguments and return the last', function() {
-            expect(interpret(parse('(begin (+ 1 2) (+ 2 3) (+ 3 4))'))[0]).to.equal(7);
-        });
-    });
 });

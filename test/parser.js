@@ -91,6 +91,8 @@ describe('parser:', function() {
         }]);
     });
 
+    // This test case is because e can also match numbers in scientific
+    // notation
     it('should parse symbol starting with "e"', function() {
         expect(parse('(+ el)')).to.eql([{
             type: 'function',
@@ -111,6 +113,33 @@ describe('parser:', function() {
                 value: 'el'
             }]
         }]);
+    });
+
+    describe('comments', function() {
+        it('should ignore inline comments', function() {
+            expect(parse('(+ el) // this is a comment')).to.eql([{
+                type: 'function',
+                name: '+',
+                args: [{
+                    type: 'symbol',
+                    value: 'el'
+                }]
+            }]);
+        });
+
+        it('should ignore multi-line comments', function() {
+            expect(parse('(+ el /* some \n multi-line \ncomment */7) // this is a comment')).to.eql([{
+                type: 'function',
+                name: '+',
+                args: [{
+                    type: 'symbol',
+                    value: 'el'
+                }, {
+                    type: 'number',
+                    value: '7'
+                }]
+            }]);
+        })
     });
 
     describe('booleans and symbols', function() {

@@ -324,3 +324,80 @@ The arguments passed to `lambda` are:
 ```
 (lambda [x] (* x x)) // Returns a function to square x
 ```
+
+## String Functions
+
+#### Substring: `(substring string number number)`
+
+**Returns:** The substring of `string` starting at the first index and ending at the second index.
+
+*Note:* If the second index is omitted, the substring will return from the first index to the end of the string.
+
+*Example:*
+```
+(substring "string" 2 4) // Returns "ri"
+(substring "string" 2) // Returns "ring"
+```
+
+#### Substr: `(substr string number number)`
+
+**Returns:** The substring after extracting number (second number argument) characters starting at number (first number argument).
+
+*Note:* If the second index is omitted, the substring will return from the first index to the end of the string.
+
+*Example:*
+```
+(substr "string" 2 3) // Returns "rin"
+(substr "string" 2) // Returns "ring"
+```
+
+#### Append: `(append string ...)`
+
+**Returns:** A new string containing all strings passed as argument appended together.
+
+*Example:*
+```
+(append "st" "ri" "ng") // Returns "string"
+```
+
+#### Trim: `(trim string)`
+
+**Returns:** A new string with leading and trailing whitespcae removed.
+
+*Example:*
+```
+(trim "   string      ") // Returns "string"
+```
+
+#### Index Of: `(indexOf string string)`
+
+**Returns:** The start index of `string` (second string argument) inside `string` (first argument string).
+
+*Example:*
+```
+(indexOf "string" "ri") // Returns 2
+```
+
+#### Split: `(split string separator)`
+
+**Returns:** A list containing the parts of `string` after being split by `separator`.
+
+*Note:* If separator is omitted, the string will be split by an emoty string.
+
+*Example:*
+```
+(split "string") Returns // Returns (list "s" "t" "r" "i" "n" "g")
+(split "st.ri.ng", ".") // Returns (list "st" "ri" "ng")
+```
+
+## Test Functions
+
+#### Assert: `(assert actual expected)`
+
+**Returns:** A string describing the actual and expected values if they are not equal, and nothing otherwise.
+
+*Example:*
+```
+(assert 1 1) // Returns nothing
+(assert 1 2) // Returns "Expected \"2\", but got \"1\""
+```

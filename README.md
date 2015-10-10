@@ -15,13 +15,13 @@ npm i -g clone git+https://github.com/vicjohnson1213/Kelp.git
 If you don't have node.js and npm, you can install node.js, npm, and Kelp using cURL:
 
 ```bash
-curl -o- https://raw.githubusercontent.com/vicjohnson1213/Kelp/master/install.sh | bash
+source /dev/stdin <<< "$(curl -o- https://raw.githubusercontent.com/vicjohnson1213/Kelp/master/install.sh)"
 ```
 
 or Wget:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/vicjohnson1213/Kelp/master/install.sh | bash
+source /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/vicjohnson1213/Kelp/master/install.sh)"
 ```
 
 ## Usage

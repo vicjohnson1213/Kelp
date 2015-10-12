@@ -232,7 +232,7 @@ Binds the expression to the definition and stores the function in the environmen
 **Returns:** A new array with `lambda` applied to each element of `list`.
 
 The arguments passed to `lambda` are:
-1. `element`: The element to run `lambda` on.
+1. `element`: The element to run `lambda` with.
 2. `index`: The index of the element currently being executed.
 
 *Example:*
@@ -247,7 +247,7 @@ The arguments passed to `lambda` are:
 
 The arguments passed to `lambda` are:
 1. `prev`: The current aggregation of the previous elements.
-2. `element`: The element to run `lambda` on.
+2. `element`: The element to run `lambda` with.
 
 *Example:*
 ```
@@ -260,11 +260,37 @@ The arguments passed to `lambda` are:
 
 The arguments passed to `lambda` are:
 1. `prev`: The current aggregation of the previous elements.
-2. `element`: The element to run `lambda` on.
+2. `element`: The element to run `lambda` with.
 
 *Example:*
 ```
 (reduceRight (list 1 2 3) (lambda [prev el] (+ prev el))) // Returns 6
+```
+
+#### Some: `(some list lambda)
+
+**Returns:** `true` if any `lambda` returns `true` for any elements in `list`.  If no elements in `list` return `true`, then `false` is returned.
+
+The arguments passed to `lambda` are:
+1. `element`: The element to run `lambda` with.
+
+*Example:*
+```
+(some (list 1 2 3) (lambda [el] (= x 1))) // Returns true
+(some (list 1 2 3) (lambda [el] (= x 4))) // Returns false
+```
+
+#### Every: `(every list lambda)
+
+**Returns:** `true` if `lambda` returns `true` for every element in `list`.  If any element in `list` return `false`, then `false` is returned.
+
+The arguments passed to `lambda` are:
+1. `element`: The element to run `lambda` with.
+
+*Example:*
+```
+(every (list 1 1 1) (lambda [el] (= x 1))) // Returns true
+(every (list 1 3 1) (lambda [el] (= x 1))) // Returns false
 ```
 
 ## Math Functions

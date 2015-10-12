@@ -172,4 +172,42 @@ describe('list functions:', function() {
             expect(list.join([['a', 'b'], 5]).message).to.equal('Invalid argument to (join list string)');
         });
     });
+
+    describe('some', function() {
+        it('should return true if one element returns true', function() {
+            var func = '(some (list 1 2 3) (lambda [x] (= x 2)))';
+            expect(interpret(parse(func))[0]).to.be.ok();
+        });
+
+        it('should return false if no element returns true', function() {
+            var func = '(some (list 1 2 3) (lambda [x] (= x 4)))';
+            expect(interpret(parse(func))[0]).to.not.be.ok();
+        });
+
+        it('should return error for invalid arguments', function() {
+            var func = '(some 1 (lambda [x] (= x 4)))';
+            var func2 = '(some (list 1 2 3) 5)';
+            expect(interpret(parse(func))[0].type).to.equal('error');
+            expect(interpret(parse(func2))[0].type).to.equal('error');
+        });
+    });
+
+    describe('every', function() {
+        it('should return true if every element returns true', function() {
+            var func = '(every (list 1 1 1) (lambda [x] (= x 1)))';
+            expect(interpret(parse(func))[0]).to.be.ok();
+        });
+
+        it('should return false if no element returns true', function() {
+            var func = '(every (list 1 3 1) (lambda [x] (= x 1)))';
+            expect(interpret(parse(func))[0]).to.not.be.ok();
+        });
+
+        it('should return error for invalid arguments', function() {
+            var func = '(every 1 (lambda [x] (= x 4)))';
+            var func2 = '(every (list 1 2 3) 5)';
+            expect(interpret(parse(func))[0].type).to.equal('error');
+            expect(interpret(parse(func2))[0].type).to.equal('error');
+        });
+    })
 });

@@ -416,6 +416,24 @@ The arguments passed to `lambda` are:
 (split "st.ri.ng", ".") // Returns (list "st" "ri" "ng")
 ```
 
+#### To Upper Case: `(toUpperCase string)`
+
+**Returns:** `string` in all caps.
+
+*Example:*
+```
+(toUpperCase "some string") // Returns "SOME STRING"
+```
+
+#### To Lower Case: `(toLowerCase string)`
+
+**Returns:** `string` in all lower case.
+
+*Example:*
+```
+(toUpperCase "SOME String") // Returns "some string"
+```
+
 ## Test Functions
 
 #### Assert: `(assert actual expected)`

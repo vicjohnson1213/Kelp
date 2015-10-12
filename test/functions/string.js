@@ -81,4 +81,26 @@ describe('string functions:', function() {
             expect(string.split(['asdf', 5]).message).to.equal('Invalid arguments to (split string string)');
         });
     });
+
+    describe('cases', function() {
+        describe('toUpperCase', function() {
+            it('should capitalize all letters', function() {
+                expect(string.toUpperCase(['some String'])).to.equal('SOME STRING');
+            });
+
+            it('should error if not a string', function() {
+                expect(string.toUpperCase([5]).type).to.equal('error');
+            });
+        });
+
+        describe('toLowerCase', function() {
+            it('should set all letters lower case', function() {
+                expect(string.toLowerCase(['some STRING'])).to.equal('some string');
+            });
+
+            it('should error if not a string', function() {
+                expect(string.toLowerCase([5]).type).to.equal('error');
+            });
+        });
+    });
 });

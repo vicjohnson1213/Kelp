@@ -197,13 +197,13 @@ Binds the expression to the definition and stores the function in the environmen
 (second (list 1 2 3)) // Returns 2
 ```
 
-#### Get Element: `(getElement number list)`
+#### Get Element: `(getElement index list)`
 
-**Returns:** The element of `list` at index `number` (0 indexed).
+**Returns:** The element of `list` at `index` (0 indexed).
 
 *Example:*
 ```
-(second (list 1 2 3)) // Returns 2
+(getElement 1 (list 1 2 3)) // Returns 2
 ```
 
 #### Concat: `(concat list ...)`
@@ -327,9 +327,9 @@ The arguments passed to `lambda` are:
 
 ## String Functions
 
-#### Substring: `(substring string number number)`
+#### Substring: `(substring string startIndex endIndex)`
 
-**Returns:** The substring of `string` starting at the first index and ending at the second index.
+**Returns:** The substring of `string` starting at the `startIndex` and ending at `endIndex`.
 
 *Note:* If the second index is omitted, the substring will return from the first index to the end of the string.
 
@@ -339,9 +339,9 @@ The arguments passed to `lambda` are:
 (substring "string" 2) // Returns "ring"
 ```
 
-#### Substr: `(substr string number number)`
+#### Substr: `(substr string startIndex length)`
 
-**Returns:** The substring after extracting number (second number argument) characters starting at number (first number argument).
+**Returns:** The substring after extracting `length` characters starting at `startIndex`.
 
 *Note:* If the second index is omitted, the substring will return from the first index to the end of the string.
 
@@ -369,9 +369,9 @@ The arguments passed to `lambda` are:
 (trim "   string      ") // Returns "string"
 ```
 
-#### Index Of: `(indexOf string string)`
+#### Index Of: `(indexOf string searchString)`
 
-**Returns:** The start index of `string` (second string argument) inside `string` (first argument string).
+**Returns:** The start index of `searchString` inside `string`.
 
 *Example:*
 ```

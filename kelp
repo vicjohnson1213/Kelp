@@ -32,7 +32,10 @@ if (!filename) {
             return p;
         },
         onLine: function(res) {
-            console.log(formatOutput(interpret(parse(res))[0]));
+            res = interpret(parse(res), env)[0];
+            if (res) {
+                console.log(formatOutput(res));
+            }
         }
     });
 
@@ -79,7 +82,7 @@ if (!filename) {
 }
 
 function formatOutput(output) {
-    if (output.type === 'error') {
+    if (output && output.type === 'error') {
         var callStack = output.callStack;
         output = chalk.red(output.message) + '\n';
         output += 'Stack Trace:\n';

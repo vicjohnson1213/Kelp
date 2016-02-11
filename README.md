@@ -319,7 +319,7 @@ The arguments passed to `lambda` are:
 
 *Example:*
 ```
-(+ 1 2 3 4) // Returns 24
+(* 1 2 3 4) // Returns 24
 ```
 
 #### Division: `(/ number ...)`

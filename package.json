@@ -9,7 +9,7 @@
     "chalk": "^1.1.1",
     "commander": "^2.9.0",
     "lodash": "^4.3.0",
-    "minimal-prompt": "^1.0.5",
+    "minimal-prompt": "^1.0.5"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",

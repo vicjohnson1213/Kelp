@@ -7,14 +7,14 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
-    "commander": "^2.8.1",
-    "lodash": "^3.10.1",
-    "minimal-prompt": "^1.0.2"
+    "commander": "^2.9.0",
+    "lodash": "^4.3.0",
+    "minimal-prompt": "^1.0.5",
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "istanbul": "^0.3.21",
-    "mocha": "^2.3.3"
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5"
   },
   "scripts": {
     "test": "mocha --recursive -R dot",
